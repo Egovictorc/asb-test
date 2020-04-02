@@ -4,6 +4,7 @@ const config = require("config")
 
 const roomsRouter = require("./routes/api/rooms")
 const adminRouter = require("./routes/api/admins")
+const errorRouter = require("./routes/api/404")
 
 const app = express();
 
@@ -13,8 +14,11 @@ app.use(express.json())
 /////// Use rooms route
 app.use("/api/rooms", roomsRouter)
 
-/////// Use rooms route
+/////// Use admin route
 app.use("/api/admin", adminRouter)
+
+/////// Use 404 route
+app.use("*", errorRouter)
 
 //////////Port
 const port = 5000;
