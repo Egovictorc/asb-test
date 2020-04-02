@@ -15,7 +15,7 @@ app.use(express.json())
 app.use("/api/rooms", roomsRouter)
 
 /////// Use admin route
-app.use("/api/admin", adminRouter)
+app.use("/api/admins", adminRouter)
 
 /////// Use 404 route
 app.use("*", errorRouter)
