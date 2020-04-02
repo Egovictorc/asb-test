@@ -32,15 +32,16 @@ router.get("/login", (req, res) => {
     if (!admin) return res.status(404).json({ msg: "no admin record found" });
 
     /////////////////RETURN DATA IF ADMIN IS REGISTERED
-    bcrypt.compare(password, admin.password, (err, admin) => {
+    bcrypt.compare(password, admin.password, (err, isMatch) => {
       ////////////SERVER ERROR
       if (err) return res.status(501).json({ msg: "server error" });
 
       //RETURN ADMIN IF VALID CREDENTIALS
-      if (admin)
+      if (isMatch)
         return res
           .status(200)
           .json({ success: "credentials validated", "logged in as": name });
+          
       ///////RETURN ERROR IF INVALID CREDENTIALS
       return res.status(400).json({ msg: "Invalid credentials" });
     });

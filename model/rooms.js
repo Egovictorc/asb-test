@@ -10,6 +10,10 @@ const roomSchema = new mongoose.Schema({
      available: {
         type: Number,
     },
+    booked: {
+        type: Number,
+        default: 0
+    },
     cost: {
         type: Number,
         default: 5000,
