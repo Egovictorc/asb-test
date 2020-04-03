@@ -110,10 +110,14 @@ router.put("/book/:description", (req, res)=> {
 
 
 
+
 //////////////////GET SPECIFIC ROOMS
 router.get("/:description", (req, res) => {
 
   const { description } = req.params;
+ 
+  //////////////SIMPLE VALIDATION FOR ROOM DESCRIPTION
+ if(!description) return res.status(400).json({ "msg": "no room description"})
 
   rooms.findOne({ description }, (err, room)=> {
     if(err) return res.status(500).json(err)
@@ -122,5 +126,28 @@ router.get("/:description", (req, res) => {
 
     return res.status(200).json(room)
   })
+})
+
+
+//////////Method::::: DELETE
+////////////desc::::: DELETE A  ROOM
+//////////// api:::::  /rooms/delete/:description
+
+router.delete("/delete/:description", (req, res) => {
+  const { description } = req.params;
+
+  //////////////SIMPLE VALIDATION FOR ROOM DESCRIPTION
+  if(!description) return res.status(400).json({ "msg": "no room description"})
+
+  rooms.findOneAndRemove({ description}, (err, room) => {
+
+    if(err) return res.status(500).json(err)
+
+    /////////////CHECK IF ROOM WITH THE DESCRIPTION EXISTS
+    if(!room) return res.status(404).json({"msg": "no room with the description"})
+
+    res.status(200).json({ "msg": `successfully removed ${description} room`})
+  })
+
 })
 module.exports = router;
