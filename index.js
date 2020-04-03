@@ -25,7 +25,7 @@ const port = 5000;
 
 ///////////DATABASE
 const db = config.get("mongoURI")
-mongoose.connect(db, { dbName: "hotel", useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
+mongoose.connect(db, { dbName: "asb_test", useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
 
 const connection = mongoose.connection;
 connection.on("error", () => console.log("error connecting to database"))

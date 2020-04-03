@@ -1,5 +1,5 @@
 {
     "mongoURI_LOCAL" : "mongodb://localhost:27017/test",
-    "mongoURI": "mongodb://mongo:27017/docker-node"
+    "mongoURI": "mongodb://mongo:27017/asb_test"
 
 }
